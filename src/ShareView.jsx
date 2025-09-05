@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
-const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"
+const API = import.meta.env.VITE_API_URL
 
 export default function ShareView() {
-  const { id } = useParams()
+  const { id: publicId } = useParams()
   const [note, setNote] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`${API}/api/notes/${id}`)
+        const res = await axios.get(`${API}/api/share/${publicId}`)
         setNote(res.data)
       } catch (err) {
         console.error(err)
@@ -21,7 +21,7 @@ export default function ShareView() {
       }
     }
     fetchNote()
-  }, [id])
+  }, [publicId])
 
   if (loading) return <p className="text-center mt-10">Loading...</p>
   if (!note) return <p className="text-center mt-10">❌ Note not found</p>

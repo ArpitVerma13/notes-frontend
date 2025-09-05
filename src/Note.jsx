@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 
-const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"
+// const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"
+// const API = "https://notes-backend-36sh.onrender.com/"
+const API = import.meta.env.VITE_API_URL;
 
 export default function Note() {
   const [notes, setNotes] = useState([])
@@ -46,7 +48,10 @@ export default function Note() {
   const share = async (id) => {
     try {
       await axios.post(`${API}/api/notes/${id}/share`)
-      const frontendLink = `${window.location.origin}/share/${id}`
+      const res = await axios.get(`${API}/api/notes/${id}`)   // get publicId
+      const pid = res.data.publicId
+      const frontendLink = `${window.location.origin}/share/${pid}`
+      // const frontendLink = `${window.location.origin}/share/${id}`
 
       setShareUrl(frontendLink)
 
