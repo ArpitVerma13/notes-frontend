@@ -3,7 +3,7 @@ import axios from "axios"
 
 // const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"
 // const API = "https://notes-backend-36sh.onrender.com/"
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || "http://localhost:8080"
 
 export default function Note() {
   const [notes, setNotes] = useState([])
