@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
-const API = import.meta.env.VITE_API_URL
+const API = "https://notes-backend-36sh.onrender.com" || "http://localhost:8080"
 
 export default function ShareView() {
   const { id: publicId } = useParams()
