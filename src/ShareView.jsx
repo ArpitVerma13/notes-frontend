@@ -5,14 +5,14 @@ import axios from "axios"
 const API = "https://notes-backend-36sh.onrender.com" || "http://localhost:8080"
 
 export default function ShareView() {
-  const { id: publicId } = useParams()
+  const { pid } = useParams()
   const [note, setNote] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`${API}/api/share/${publicId}`)
+        const res = await axios.get(`${API}/api/share/${pid}`)
         setNote(res.data)
       } catch (err) {
         console.error(err)
@@ -21,7 +21,7 @@ export default function ShareView() {
       }
     }
     fetchNote()
-  }, [publicId])
+  }, [pid])
 
   if (loading) return <p className="text-center mt-10">Loading...</p>
   if (!note) return <p className="text-center mt-10">❌ Note not found</p>

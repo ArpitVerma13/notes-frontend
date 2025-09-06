@@ -8,7 +8,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Note />} />
-        <Route path="/share/:id" element={<ShareView />} />
+        <Route path="/share/:pid" element={<ShareView />} />
       </Routes>
     </BrowserRouter>
   )
